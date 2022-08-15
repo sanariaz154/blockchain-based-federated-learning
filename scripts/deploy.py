@@ -14,7 +14,7 @@ def main():
     if network.show_active() == "development":
         node1 = accounts.add(config["wallets"]["node1_key"])
         node2 = accounts.add(config["wallets"]["node2_key"])
-
+        print(owner)
         # Provide initial supply
         accounts[0].transfer(owner, "30 ether")
         accounts[0].transfer(node1, "30 ether")
@@ -26,6 +26,7 @@ def main():
 
         project = deploy_project(owner)
         setup_test_project(project, owner)
+        print(project)
         # Print instructions for testing
         print("Connect test data provider as (change account and data as needed):")
         print(

@@ -9,8 +9,11 @@ function getChain(chainId: number): string {
 }
 
 export function getContractAddress(chainId: number, name: string): undefined | string {
+  console.log('chain ID');
+  console.log(chainId);
   const chain = getChain(chainId);
-
+  console.log(map);
+  console.log(chain);
   if (isKeyof(chain, map) && isKeyof(name, map[chain])) return map[chain][name].at(-1);
 
   return undefined;

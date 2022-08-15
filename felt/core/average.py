@@ -52,8 +52,25 @@ def average_models(models):
     """
     params = get_models_params(models)
     for param, values in params.items():
-        val = np.mean(values, axis=0)
+        print(np.shape(values))
+        #val = np.mean(values, axis= 0)
+        val = np.array([np.mean(i) for i in values])
+        #val, error = tolerant_mean(values)
+        #mean = lambda x: sum(x)/float(len(x)) 
+        #transpose = [[item[i] for item in values] for i in range(len(values[0]))]
+        #val = [[mean(j[i] for j in t if i < len(j)) for i in range(len(max(t, key = len)))] for t in transpose]
+        
         params[param] = val.astype(values[0].dtype)
 
     model = set_model_params(models[0], params)
     return model
+
+
+def tolerant_mean(arrs):
+    lens = [len(i) for i in arrs]
+    arr = np.ma.empty((np.max(lens),len(arrs)))
+    arr.mask = True
+    for idx, l in enumerate(arrs):
+        arr[:len(l),idx] = l
+    return arr.mean(axis = -1), arr.std(axis=-1)
+

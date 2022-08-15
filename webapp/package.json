@@ -23,6 +23,8 @@
     "classnames": "^2.3.1",
     "ethers": "^5.5.2",
     "file-saver": "^2.0.5",
+    "ganache-cli": "^6.12.2",
+    "global": "^4.4.0",
     "hash.js": "^1.1.7",
     "is-ipfs": "^6.0.2",
     "node-sass": "^6.0.1",
@@ -41,7 +43,8 @@
     "prebuild": "del-cli src/artifacts && copyfiles -u 2 \"../build/**/*.json\" src/artifacts/",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "lint": "eslint src --ext .ts,.tsx --fix"
+    "lint": "eslint src --ext .ts,.tsx --fix",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": "react-app"

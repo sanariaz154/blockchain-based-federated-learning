@@ -61,9 +61,20 @@ contract TrainingPlans is Builders, DataProviders {
     // TODO: Add Chainlink Keeper to close round if time elapses
     function _saveModel(string memory modelCID) internal onlyNode {
         require(
-            currentRound < plans[numPlans - 1].numRounds,
-            "No more rounds to perform."
+        currentRound < plans[numPlans - 1].numRounds,
+        "No more rounds to perform..."            
         );
+        // if(currentRound < plans[numPlans - 1].numRounds){
+        //    TrainingPlan storage plan = plans[numPlans - 1];
+        //    require(plan.finalNode == msg.sender, "Only pre-selected node can finish plan");
+        //    require(currentRound >= plan.numRounds, "All rounds must be completed");
+        //    plan.finalModelCID = modelCID;
+        //    isPlanRunning = false;
+        //    require(
+        //    currentRound < plans[numPlans - 1].numRounds,
+        //    "No more rounds to perform..."            
+        //);
+        //}
 
         Round storage round = plans[numPlans - 1].rounds[currentRound];
         require(

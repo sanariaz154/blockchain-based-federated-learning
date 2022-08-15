@@ -35,7 +35,10 @@ async function deployContract(
 ): Promise<Contract> {
   const tokenAddress = getContractAddress(chainId, 'FELToken');
   const factory = await getContractFactory(contractName, signer);
-
+  console.log('I was triggered during 1');
+  console.log(tokenAddress);
+  console.log('I was triggered during 2');
+  console.log(chainId);
   if (!factory) {
     throw Error(
       'Invalid contract type, unable to load contract for deployment.',
@@ -96,6 +99,7 @@ const CreateProject: FC = () => {
 
   const deploy = async () => {
     if (!provider || !metaMask.provider || !account) {
+      // didnt go here
       return;
     }
     setSubmitted(true);
@@ -103,6 +107,7 @@ const CreateProject: FC = () => {
     setAddress('');
 
     if (!(chainId && name && description)) {
+      // didnt go here
       return;
     }
 
@@ -114,7 +119,7 @@ const CreateProject: FC = () => {
     try {
       publicKey = await getPublicKey(metaMask.provider, account);
     } catch (e: any) {
-      setError(e && e.message ? e.message : 'Unknown error');
+      setError(e && e.message ? e.message : 'Unknown error'); // didnt go here
       return;
     }
 
@@ -127,7 +132,7 @@ const CreateProject: FC = () => {
         chainId,
         provider.getSigner(),
       );
-    } catch (e: any) {
+    } catch (e: any) { // this is after cancelling the dialouge
       setError(e && e.message ? e.message : 'Unknown error');
       return;
     } finally {
